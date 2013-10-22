@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="RunAll" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <PropertyGroup>
+        <Configuration Condition="$(Configuration) == ''">Debug</Configuration>
+        <ProjectRoot>$(MSBuildProjectDirectory)\..</ProjectRoot>
+        <ArtifactsPath>$(ProjectRoot)\artifacts\$(Configuration)</ArtifactsPath>
+        <ServiceSiteTargetPath>$(ArtifactsPath)\SiteExtensions\simple</ServiceSiteTargetPath>
+    </PropertyGroup>
+    
+    <Target Name="RunAll" DependsOnTargets="BuildSite; BuildZips" />
+
+    <Target Name="CreateOutputPath">
+        <MakeDir Directories="$(ArtifactsPath)" Condition="!Exists('$(ArtifactsPath)')" />
+    </Target>
+
+    <Target Name="BuildSite">
+        <ItemGroup>
+            <ServiceSiteFilesToCopy Include="$(ProjectRoot)\simple\*" />
+        </ItemGroup>        
+        <Copy SourceFiles="%(ServiceSiteFilesToCopy.FullPath)" DestinationFiles="$(ServiceSiteTargetPath)\%(RecursiveDir)%(Filename)%(Extension)" 
+                SkipUnchangedFiles="true" />
+    </Target>
+
+     <Target Name="BuildZips" DependsOnTargets="CreateOutputPath">
+        <PropertyGroup>
+            <SourceDirectory>$(ArtifactsPath)\SiteExtensions</SourceDirectory>
+            <ZipTargetPath>$(ArtifactsPath)\zip</ZipTargetPath>
+        </PropertyGroup> 
+        <RemoveDir Directories="$(ZipTargetPath)" Condition=" Exists('$(ZipTargetPath)') " />
+        <MakeDir Directories="$(ZipTargetPath)" />
+        <CreateZipFileFromDirectory
+            DestinationArchive="$(ZipTargetPath)\SimpleWebSiteExtension.zip"
+            SourceDirectory="$(SourceDirectory)"
+            IncludeBaseDirectory="true" />
+        <Copy SourceFiles="$(ProjectRoot)\build\DeployExtension.cmd" DestinationFiles="$(ZipTargetPath)\DeployExtension.cmd" SkipUnchangedFiles="true" />
+     </Target>
+     
+     <UsingTask TaskName="CreateZipFileFromDirectory" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+        <ParameterGroup>
+          <DestinationArchive ParameterType="System.String" Required="true"/>
+          <SourceDirectory ParameterType="System.String" Required="true" />
+          <IncludeBaseDirectory ParameterType="System.Boolean" Required="true" />
+        </ParameterGroup>
+        <Task>
+          <Reference Include="$(MSBuildToolsPath)\System.IO.Compression.dll"/>
+          <Reference Include="$(MSBuildToolsPath)\System.IO.Compression.FileSystem.dll"/>
+          <Using Namespace="System" />
+          <Using Namespace="System.IO" />
+          <Using Namespace="System.IO.Compression" />
+          <Code Type="Fragment" Language="cs">
+            <![CDATA[
+                   ZipFile.CreateFromDirectory(SourceDirectory, DestinationArchive, System.IO.Compression.CompressionLevel.Optimal, IncludeBaseDirectory);
+                   Console.WriteLine(Path.GetFullPath(DestinationArchive) + " created.");
+              ]]>
+          </Code>
+        </Task>
+      </UsingTask>
+      
+</Project>
