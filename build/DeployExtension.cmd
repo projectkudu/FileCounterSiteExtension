@@ -31,8 +31,6 @@ if NOT EXIST "%_CURLEXE%" (
 @echo.
 @call "%_CURLEXE%" -k -v -T "%_EXTZIP%" "%_SCMURI%/zip"
 @echo.
-@echo Do set Site's AppSetting WEBSITE_PRIVATE_EXTENSIONS = 1
-@echo.
 
 exit /b 0
 

@@ -2,3 +2,4 @@
 [Bb]in/
 /artifacts
 msbuild.log
+*.nupkg

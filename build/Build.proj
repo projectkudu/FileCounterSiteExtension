@@ -5,7 +5,7 @@
         <Configuration Condition="$(Configuration) == ''">Debug</Configuration>
         <ProjectRoot>$(MSBuildProjectDirectory)\..</ProjectRoot>
         <ArtifactsPath>$(ProjectRoot)\artifacts\$(Configuration)</ArtifactsPath>
-        <ServiceSiteTargetPath>$(ArtifactsPath)\SiteExtensions\simple</ServiceSiteTargetPath>
+        <ServiceSiteTargetPath>$(ArtifactsPath)\SiteExtensions\filecounter</ServiceSiteTargetPath>
     </PropertyGroup>
     
     <Target Name="RunAll" DependsOnTargets="BuildSite; BuildZips" />

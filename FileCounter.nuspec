@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>filecounter</id>
+    <title>Sample File Counter Site Extension</title>
+    <version>1.0.15</version>
+    <authors>David Ebbo</authors>
+    <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
+    <projectUrl>https://github.com/projectkudu/SimpleWebSiteExtension</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A simple Site Extension that counts the number of files in the web root</description>
+    <tags>filecounter sample siteextension</tags>
+  </metadata>
+  <files>
+    <file src="artifacts\Release\SiteExtensions\filecounter\**\*.*" target="content" />
+  </files>
+</package>
