@@ -8,7 +8,7 @@ This demontrates how to enable simple website extension.
   3. Copy `Deployment Trigger Url` from Azure portal for your website (in CONFIGURE TAB).
   4. Upload extension to your website by `artifacts\Release\zip\DeployExtension.cmd "<deploy-trigger-url>"`.
   5. Restart your site.  You may use Portal to do so.
-  6. You can now access this simple extension via `<scm-url>/simple`.
+  6. You can now access this simple extension via `<scm-url>/filecounter`.
 
 That's it.
   
