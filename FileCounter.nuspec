@@ -3,14 +3,17 @@
   <metadata>
     <id>filecounter</id>
     <title>File Counter</title>
-    <version>1.0.17</version>
+    <version>1.0.19</version>
     <authors>David Ebbo</authors>
     <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
     <projectUrl>https://github.com/projectkudu/SimpleWebSiteExtension</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A sample Site Extension that counts the number of files in the web root</description>
     <iconUrl>https://raw.githubusercontent.com/projectkudu/FileCounterSiteExtension/master/FileCounter50x50.png</iconUrl>
-    <tags>filecounter sample siteextension</tags>
+    <tags>AzureSiteExtension filecounter sample siteextension</tags>
+    <packageTypes>
+      <packageType name="AzureSiteExtension" />
+    </packageTypes>
   </metadata>
   <files>
     <file src="artifacts\Release\SiteExtensions\filecounter\**\*.*" target="content" />
