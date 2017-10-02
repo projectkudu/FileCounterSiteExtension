@@ -2,8 +2,8 @@
 <package >
   <metadata>
     <id>filecounter</id>
-    <title>File Counter</title>
-    <version>1.0.19</version>
+    <title>File Counter (sample)</title>
+    <version>1.0.20</version>
     <authors>David Ebbo</authors>
     <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
     <projectUrl>https://github.com/projectkudu/SimpleWebSiteExtension</projectUrl>
